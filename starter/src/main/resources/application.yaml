@@ -1,0 +1,4 @@
+server:
+  port: 9000
+api-dados:
+  url: http://localhost:9100/api-dados-mock
