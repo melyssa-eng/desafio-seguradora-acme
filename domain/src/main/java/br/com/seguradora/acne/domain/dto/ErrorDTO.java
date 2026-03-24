@@ -1,4 +1,6 @@
 package br.com.seguradora.acne.domain.dto;
 
-public record ErrorDTO(int code, String message) {
+import java.util.List;
+
+public record ErrorDTO(int code, String message, List<String> detail) {
 }
