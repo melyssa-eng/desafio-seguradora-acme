@@ -13,6 +13,12 @@ import java.util.List;
 @Table(name = "tbl_priece")
 public class PriceEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_entity_seq")
+    @SequenceGenerator(
+            name = "tbl_priece_seq",
+            sequenceName = "tbl_priece_seq", // The actual name in the DB
+            allocationSize = 100 // Improves performance by reducing DB calls
+    )
     private Long id;
 
     @Column(name = "insurance_policy_id")

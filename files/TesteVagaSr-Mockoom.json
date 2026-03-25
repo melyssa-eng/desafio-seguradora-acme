@@ -1,0 +1,129 @@
+{
+  "uuid": "6eeff38c-560b-4864-afdf-34f2058d9bc2",
+  "lastMigration": 33,
+  "name": "TesteVagaSr",
+  "endpointPrefix": "api-dados-mock",
+  "latency": 0,
+  "port": 9100,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "aae2f694-cd26-4a9a-90e4-266fc3114f87",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "search-product/:produtoId",
+      "responses": [
+        {
+          "uuid": "e3f0c58d-f498-4e7e-b3f9-b06ffda74513",
+          "body": "{ \r\n    \"id\": \"1b2da7cc-b367-4196-8a78-9cfeec21f587\", \r\n    \"name\": \"Seguro de Vida\", \r\n    \"created_at\": \"2021-07-01T00:00:00Z\", \r\n    \"active\": true, \r\n    \"offers\": [ \r\n        \"adc56d77-348c-4bf0-908f-22d402ee715c\", \r\n        \"bdc56d77-348c-4bf0-908f-22d402ee715c\", \r\n        \"cdc56d77-348c-4bf0-908f-22d402ee715c\" \r\n    ] \r\n} \r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "ec8c9c96-5af4-40d4-884d-3bb577fff874",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "search-offer/:offerId",
+      "responses": [
+        {
+          "uuid": "49e79619-5d3a-4ac7-91e4-d7beaf23e712",
+          "body": "{ \r\n    \"id\": \"adc56d77-348c-4bf0-908f-22d402ee715c\", \r\n    \"product_id\": \"1b2da7cc-b367-4196-8a78-9cfeec21f587\", \r\n    \"name\": \"Seguro de Vida Familiar\", \r\n    \"created_at\": \"2021-07-01T00:00:00Z\", \r\n    \"active\": true, \r\n    \"coverages\": { \r\n        \"Incêndio\": 500000.00, \r\n        \"Desastres naturais\": 600000.00, \r\n        \"Responsabiliadade civil\": 80000.00, \r\n        \"Roubo\": 100000.00 \r\n      }, \r\n      \"assistances\": [ \r\n        \"Encanador\", \r\n        \"Eletricista\", \r\n        \"Chaveiro 24h\", \r\n        \"Assistência Funerária\" \r\n      ], \r\n      \"monthly_premium_amount\": { \r\n        \"max_amount\": 100.74, \r\n        \"min_amount\": 50.00, \r\n        \"suggested_amount\": 60.25 \r\n      }\r\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "aae2f694-cd26-4a9a-90e4-266fc3114f87"
+    },
+    {
+      "type": "route",
+      "uuid": "ec8c9c96-5af4-40d4-884d-3bb577fff874"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

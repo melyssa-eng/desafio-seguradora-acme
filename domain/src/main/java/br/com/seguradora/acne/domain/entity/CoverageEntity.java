@@ -1,9 +1,6 @@
 package br.com.seguradora.acne.domain.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +11,12 @@ import lombok.Setter;
 @Table(name = "tbl_coverage")
 public class CoverageEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_entity_seq")
+    @SequenceGenerator(
+            name = "tbl_coverage_seq",
+            sequenceName = "tbl_coverage_seq", // The actual name in the DB
+            allocationSize = 100 // Improves performance by reducing DB calls
+    )
     private Long id;
     private Double fire;
 

@@ -5,10 +5,7 @@ import br.com.seguradora.acne.application.exception.GenericListException;
 import br.com.seguradora.acne.application.port.in.QuoteRequestPortIn;
 import br.com.seguradora.acne.application.port.out.SearchOfferPortOut;
 import br.com.seguradora.acne.application.port.out.SearchProductPortOut;
-import br.com.seguradora.acne.domain.dto.MonthlyPremiumAmountDTO;
-import br.com.seguradora.acne.domain.dto.OfferDTO;
-import br.com.seguradora.acne.domain.dto.QuoteRequestDTO;
-import br.com.seguradora.acne.domain.dto.ResponseSearchProductDTO;
+import br.com.seguradora.acne.domain.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -45,22 +42,22 @@ public class QuoteRequestUseCase implements QuoteRequestPortIn {
                 return erros;
             }
 
-            if(request.coverages().fire() >= offer.get().coverages().fire())
+            if(Optional.ofNullable(request.coverages().fire()).orElse(0.0) >= offer.get().coverages().fire())
                 erros.add("Valor informado da cobertura de incêndio recebido é maior do que o a oferta pode oferecer ".concat(offer.get().coverages().fire().toString()));
 
-            if(request.coverages().naturalDisasters() >= offer.get().coverages().naturalDisasters())
+            if(Optional.ofNullable(request.coverages().naturalDisasters()).orElse(0.0) >= offer.get().coverages().naturalDisasters())
                 erros.add("Valor informado da cobertura do desastre natural recebido é maior do que o a oferta pode oferecer ".concat(offer.get().coverages().naturalDisasters().toString()));
 
-            if(request.coverages().civilLiability() >= offer.get().coverages().civilLiability())
+            if(Optional.ofNullable(request.coverages().civilLiability()).orElse(0.0) >= offer.get().coverages().civilLiability())
                 erros.add("Valor informado da cobertura da responsabilidade civil recebido é maior do que o a oferta pode oferecer ".concat(offer.get().coverages().civilLiability().toString()));
 
-            if(request.coverages().theft() >= offer.get().coverages().theft())
+            if(Optional.ofNullable(request.coverages().theft()).orElse(0.0) >= offer.get().coverages().theft())
                 erros.add("Valor informado da cobertura por roubo recebido é maior do que o a oferta pode oferecer ".concat(offer.get().coverages().theft().toString()));
 
-            if(request.totalMonthlyPremiumAmount() <= offer.get().monthlyPremiumAmount().minAmount())
+            if(Optional.ofNullable(request.totalMonthlyPremiumAmount()).orElse(0.0) <= offer.get().monthlyPremiumAmount().minAmount())
                 erros.add("O valor mensal total do prêmio é inferior ao valor mensal mínimo ofertado ".concat(offer.get().monthlyPremiumAmount().minAmount().toString()));
 
-            if(request.totalMonthlyPremiumAmount() >= offer.get().monthlyPremiumAmount().maxAmount())
+            if(Optional.ofNullable(request.totalMonthlyPremiumAmount()).orElse(0.0) >= offer.get().monthlyPremiumAmount().maxAmount())
                 erros.add("O valor mensal total do prêmio é maior que o valor mensal máximo ofertado ".concat(offer.get().monthlyPremiumAmount().maxAmount().toString()));
 
             List<String> erroAssistances = (validateAssistances(offer.get(), request));
