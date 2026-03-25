@@ -15,14 +15,6 @@ public class QuoteRequestController {
 
     @PostMapping("quote_request")
     public ResponseEntity<Object> guoteRequest(@RequestBody QuoteRequestDTO request) {
-
         return ResponseEntity.ok(portIn.quoteRequest(request));
-
     }
-    @GetMapping()
-    public String getReturn()
-    {
-        return "ok";
-    }
-
 }
