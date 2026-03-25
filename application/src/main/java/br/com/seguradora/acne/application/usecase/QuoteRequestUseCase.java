@@ -60,6 +60,10 @@ public class QuoteRequestUseCase implements QuoteRequestPortIn {
             if(Optional.ofNullable(request.totalMonthlyPremiumAmount()).orElse(0.0) >= offer.get().monthlyPremiumAmount().maxAmount())
                 erros.add("O valor mensal total do prêmio é maior que o valor mensal máximo ofertado ".concat(offer.get().monthlyPremiumAmount().maxAmount().toString()));
 
+            Double valueTotalOffer = totalCoverageAmmout(offer.get().coverages());
+            if(request.totalCoverageAmount() > valueTotalOffer)
+                erros.add("O valor total do prêmio é maior que o ofertado, valor total ofertado: ".concat(String.valueOf(valueTotalOffer)));
+
             List<String> erroAssistances = (validateAssistances(offer.get(), request));
 
             if(!erroAssistances.isEmpty())
@@ -70,6 +74,10 @@ public class QuoteRequestUseCase implements QuoteRequestPortIn {
         catch (Exception e) {
             throw new GenericException(HttpStatus.INTERNAL_SERVER_ERROR, "Ocorreu um erro ao tentar realizar a validação do payload");
         }
+    }
+
+    private Double totalCoverageAmmout(CoverageDTO coverage) {
+        return  coverage.theft() + coverage.fire() + coverage.naturalDisasters() + coverage.civilLiability();
     }
 
     private List<String>  validateAssistances(OfferDTO offer, QuoteRequestDTO request) {
